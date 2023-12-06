@@ -1,7 +1,7 @@
 "use client";
 import { useSnapshot } from "valtio";
 import state from "../store";
-import { ConnectionBar } from "@/components";
+import { InputHome } from "@/components";
 import "@/css/home.css";
 const Home = () => {
   const snap = useSnapshot(state);
@@ -13,11 +13,11 @@ const Home = () => {
             Connettiti ad un robot EV3:
           </h1>
           <div className=" self-center">
-            <ConnectionBar />
+            <InputHome />
           </div>
         </section>
         <section>
-          <p>test</p>
+          <p>TEST__0</p>
         </section>
       </div>
     )

@@ -1,2 +1,2 @@
-import ConnectionBar from "./connectionBar";
-export { ConnectionBar };
+import InputHome from "./inputHome";
+export { InputHome };
