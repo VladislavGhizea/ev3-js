@@ -1,8 +1,8 @@
-import Home from "../pages/home";
+import { PageSelector } from "@/pages/pageSelector";
 export default function Page() {
   return (
     <main>
-      <Home />
+      <PageSelector />
     </main>
   );
 }

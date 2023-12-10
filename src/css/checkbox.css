@@ -45,7 +45,7 @@
 }
 
 .checkbox-wrapper-2 .ikxBAC:checked {
-    background-color: #6e79d6;
+    background-color: #69a5f9;
 }
 
 .checkbox-wrapper-2 .ikxBAC:checked::after {
@@ -58,5 +58,5 @@
 }
 
 .checkbox-wrapper-2 .ikxBAC:checked:hover {
-    background-color: #535db3;
+    background-color: #70AAFA;
 }
