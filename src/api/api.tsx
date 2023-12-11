@@ -52,7 +52,29 @@ app.post("/command", (req, res) => {
     res.status(500).json({ message: "Robottino non connesso" });
   }
 });
+app.get("/command", (req, res) => {
+  // Se il client TCP non è connesso, invia un errore
+  if (!tcpClient) {
+    res.status(500).json({ message: "Robottino non connesso" });
+    return;
+  }
 
+  console.log("Ricevuto comando GET", req.body.command);
+
+  console.log("Ricevendo risposta dal server TCP");
+
+  // Crea una nuova promessa che si risolve quando ricevi dati dal server TCP
+  new Promise((resolve) => {
+    tcpClient.on("data", (data) => {
+      console.log("Ricevuto:", data.toString());
+      resolve(data.toString());
+    });
+  })
+    // Attendi che la promessa si risolva, poi invia la risposta HTTP
+    .then((data) => {
+      res.json({ message: "Risposta ricevuta: " + data });
+    });
+});
 // Avvia il server sulla porta 8080
 app.listen(8080, () => {
   console.log("porta api: 8080");

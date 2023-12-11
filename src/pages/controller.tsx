@@ -3,14 +3,17 @@ import { useSnapshot } from "valtio";
 import state from "../store";
 import {
   DownArrow,
+  DownLeftArrow,
   LeftArrow,
-  LeftArrowCurvingRight,
   RightArrow,
-  RightArrowCurvingLeft,
   StopButton,
   UpArrow,
+  UpRightArrow,
 } from "@/assets";
 import {
+  ColoreDX,
+  ColoreSX,
+  DispositiviCollegati,
   DistanceRadar,
   LevelBattery,
   NavbarHome,
@@ -39,28 +42,43 @@ const Controller = () => {
         <div className="flex items-center justify-center">
           <div className="grid grid-rows-1 justify-items-center w-screen">
             <div className="grid grid-cols-[auto_auto_auto] w-screen max-w-full mt-3">
-              <section className="grid grid-rows-3 items-center justify-end gap-y-3">
-                <RightArrowCurvingLeft />
-                <LeftArrow />
-                <div>---</div>
-              </section>
-              <section className="grid grid-rows-3 items-center justify-center gap-y-3">
-                <UpArrow />
-                <StopButton />
-                <DownArrow />
-              </section>
-              <section className="grid grid-rows-3 items-center justify-start gap-y-3">
-                <LeftArrowCurvingRight />
-                <RightArrow />
-                <div>---</div>
-              </section>
+              <div />
+              <div className="grid grid-cols-[auto_max-content_auto] grid-rows-3 gap-3">
+                <div />
+                <div className="flex justify-center">
+                  <UpArrow />
+                </div>
+                <div />
+                <div className="flex justify-end">
+                  <LeftArrow />
+                </div>
+                <div className="flex justify-center">
+                  <StopButton />
+                </div>
+                <div className="flex justify-start">
+                  <RightArrow />
+                </div>
+                <div />
+                <div className="flex justify-center">
+                  <DownArrow />
+                </div>
+                <div />
+              </div>
+              <div />
             </div>
           </div>
         </div>
         <div className="content-center justify-center grid grid-cols-3">
-          <section className=" flex items-center justify-center h-full">
-            <DistanceRadar />
+          <section className="grid grid-rows-2">
+            <section className=" flex items-center justify-center h-full">
+              <DistanceRadar />
+            </section>
+            <section className="flex items-center justify-evenly h-full">
+              <ColoreDX />
+              <ColoreSX />
+            </section>
           </section>
+
           <section className="grid grid-rows-2 items-center">
             <div className="w-[calc(100vw/3)] battery-level">
               <LevelBattery />
@@ -69,7 +87,17 @@ const Controller = () => {
               <SliderSpeed />
             </div>
           </section>
-          <section></section>
+          <section className="grid grid-cols-2">
+            <div className="flex items-center justify-center h-full">
+              <UpRightArrow />
+            </div>
+            <div className="flex items-center justify-center h-full">
+              <DownLeftArrow />
+            </div>
+          </section>
+        </div>
+        <div className="flex justify-center mt-3">
+          <DispositiviCollegati />
         </div>
       </>
     )

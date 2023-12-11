@@ -1,7 +1,10 @@
+import { UseCommandPost } from "@/config";
 import { Slider, SliderValue, Tooltip } from "@nextui-org/react";
+import React, { useEffect, useRef, useState } from "react";
 const SliderSpeed = () => {
   const [value, setValue] = React.useState<SliderValue>(0.2);
   const [inputValue, setInputValue] = React.useState<string>("0.2");
+  const timerRef = useRef<NodeJS.Timeout | null>(null);
 
   const handleChange = (value: SliderValue) => {
     if (isNaN(Number(value))) return;
@@ -9,6 +12,21 @@ const SliderSpeed = () => {
     setValue(value);
     setInputValue(value.toString());
   };
+  useEffect(() => {
+    if (timerRef.current) {
+      clearTimeout(timerRef.current);
+    }
+
+    timerRef.current = setTimeout(() => {
+      UseCommandPost("velocita " + Number(inputValue) * 100);
+    }, 5000); // Eseguito dopo 5 secondi
+
+    return () => {
+      if (timerRef.current) {
+        clearTimeout(timerRef.current);
+      }
+    }; // Pulizia alla smontaggio del componente
+  }, [inputValue]); // Eseguito ogni volta che inputValue cambia
   return (
     <Slider
       label="Velocità"
@@ -76,4 +94,3 @@ const SliderSpeed = () => {
   );
 };
 export default SliderSpeed;
-import React from "react";
