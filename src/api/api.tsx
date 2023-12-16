@@ -19,7 +19,7 @@ app.post("/connect", (req, res) => {
   console.log("Ricevuta richiesta di connessione");
   console.log(req.body);
 
-  if (!tcpClient) {
+  if (!tcpClient || tcpClient.destroyed) {
     tcpClient = new net.Socket();
 
     tcpClient.connect(req.body.port, req.body.ip, () => {
@@ -35,7 +35,15 @@ app.post("/connect", (req, res) => {
     res.status(500).json({ message: "Robottino già connesso" });
   }
 });
-
+app.post("/close", (req, res) => {
+  if (tcpClient) {
+    tcpClient.destroy();
+    tcpClient = undefined;
+    res.json({ message: "Connessione chiusa" });
+  } else {
+    res.status(500).json({ message: "Robottino non connesso" });
+  }
+});
 // Crea un endpoint POST /command che accetta pacchetti JSON
 app.post("/command", (req, res) => {
   console.log("Ricevuto comando");

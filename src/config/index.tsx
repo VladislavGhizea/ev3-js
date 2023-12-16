@@ -1,4 +1,5 @@
 import ipPortPost from "./ipPortPost";
 import { UseCommandPost } from "./commandPost";
 import { UseCommandPostGet } from "./commandPostGet";
-export { ipPortPost, UseCommandPost, UseCommandPostGet };
+import { closeConnection } from "./closeConnection";
+export { ipPortPost, UseCommandPost, UseCommandPostGet, closeConnection };

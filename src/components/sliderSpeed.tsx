@@ -2,8 +2,8 @@ import { UseCommandPost } from "@/config";
 import { Slider, SliderValue, Tooltip } from "@nextui-org/react";
 import React, { useEffect, useRef, useState } from "react";
 const SliderSpeed = () => {
-  const [value, setValue] = React.useState<SliderValue>(0.2);
-  const [inputValue, setInputValue] = React.useState<string>("0.2");
+  const [value, setValue] = React.useState<SliderValue>(0.1);
+  const [inputValue, setInputValue] = React.useState<string>("0.1");
   const timerRef = useRef<NodeJS.Timeout | null>(null);
 
   const handleChange = (value: SliderValue) => {

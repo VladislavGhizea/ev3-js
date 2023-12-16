@@ -20,7 +20,7 @@ import {
   SliderSpeed,
 } from "@/components";
 import { createGlobalStyle } from "styled-components";
-
+import { closeConnection } from "@/config";
 const GlobalStyle = createGlobalStyle`
   :root {
     background-image: url(/blobanimation2.svg);
@@ -28,6 +28,9 @@ const GlobalStyle = createGlobalStyle`
     background-position: -15vw -10vh;
   }
 `;
+addEventListener("beforeunload", () => {
+  closeConnection();
+});
 const Controller = () => {
   const snap = useSnapshot(state);
 

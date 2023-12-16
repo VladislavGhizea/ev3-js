@@ -46,7 +46,7 @@ const ColoreDX = () => {
   return (
     <Popover placement="bottom" showArrow={true}>
       <PopoverTrigger>
-        <Button onClick={handleClick}>ColoreDX</Button>
+        <Button onClick={handleClick}>ColoreSX</Button>
       </PopoverTrigger>
       <PopoverContent>
         <div

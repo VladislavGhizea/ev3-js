@@ -8,25 +8,29 @@ import {
 import { useState } from "react";
 
 const DistanceRadar = () => {
-  const [distanza, setDistanza] = useState("Invio...");
-  UseCommandPostGet("distanza")
-    .then((result) => {
-      const match = result.message.match(/(\d+)/);
-      const number = match ? match[0] * 100 : 0;
-      console.log("RISULTATO POSTGET:" + result);
-      if (number > 250) {
-        setDistanza("Strada libera");
-      } else {
-        setDistanza("Ostacolo a " + number + " cm");
-      }
-    })
-    .catch((error) => {
-      console.error(error);
-    });
+  const [distanza, setDistanza] = useState("Strada libera");
+  const handleClick = () => {
+    UseCommandPostGet("distanza")
+      .then((result) => {
+        const regex = /(\d+\.\d+)/;
+        const match = result.message.match(regex);
+        const number = regex.test(result.message) ? match[0] : 251;
+        const numeroFloat = parseFloat(number) * 100;
+        console.log("RISULTATO POSTGET:" + numeroFloat);
+        if (number > 250) {
+          setDistanza("Strada libera");
+        } else {
+          setDistanza("Ostacolo a " + Math.floor(numeroFloat) + " cm");
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
   return (
     <Popover placement="right" showArrow={true}>
       <PopoverTrigger>
-        <Button>Distanza</Button>
+        <Button onClick={handleClick}>Distanza</Button>
       </PopoverTrigger>
       <PopoverContent>
         <div className="px-1 py-2">
